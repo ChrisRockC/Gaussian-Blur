@@ -8,7 +8,12 @@
 
 #import "ViewController.h"
 
+
+#define Title @"高斯模糊"
+
 @interface ViewController ()
+
+@property (nonatomic,strong) UIImageView *imageView;
 
 @end
 
@@ -16,14 +21,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"高斯模糊";
+    [self initView];
+    [self createBlurBackgroundWithImage:[UIImage imageNamed:@"2"] view:self.imageView blurRadius:50];
+    
+}
+
+-(void)initView{
+    self.title = Title;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2"]];
+    self.imageView = imageView;
     imageView.frame = CGRectMake(0,200,self.view.frame.size.width,200);
     [self.view addSubview:imageView];
-    
-    
-    [self createBlurBackgroundWithImage:[UIImage imageNamed:@"2"] view:imageView blurRadius:50];
-    
 }
 
 -(void)createBlurBackgroundWithImage:(UIImage *)image view:(UIView *)view blurRadius:(CGFloat)blurRadius{
